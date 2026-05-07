@@ -1,98 +1,98 @@
 ---
 name: markdown-writing
-description: Markdown ファイル（.md）を作成・編集する際のルール
+description: Rules for creating or editing Markdown (`.md`) files
 ---
 
-# Markdown 執筆ガイド
+# Markdown writing guide
 
-## 基本方針
+## Principles
 
-- シンプルで読みやすい文書を心がける
-- ファイルは UTF-8 で保存する
-- 日本語文字が含まれる場合、文字化けに注意する
-- 可能な限り簡潔に書く
-- 冗長な表現を避ける
+- Aim for simple, readable documents
+- Save files as UTF-8
+- Watch out for mojibake when the file contains Japanese
+- Keep prose as concise as possible
+- Avoid redundant phrasing
 
-## 禁止事項
+## Forbidden
 
-- 番号付きリスト（1. 2. 3.）を使わず `-` を使う
-- `**項目名**:` のような Markdown にない構造化記法を使わない
-- 箇条書きで「キー: 値」を表すコロン区切り表記は**絶対に**使わない
-  - `- 名前: 山田太郎` のような書き方は不可
-  - 情報は自然な文として書く、または見出しと段落で構造化する
-  - これは `**項目名**:` と同様に Markdown 本来の記法ではないため、一切使用禁止
-- 表（テーブル）を使わない
-- 強調（`**太字**`）を使わない
-- 区切り線（`---`）を使わない
-- 句点「。」を使わない
-  - 文末は改行で表現する
+- Don't use numbered lists (`1.` `2.` `3.`); use `-`
+- Don't use the non-Markdown structuring pattern `**Label**:`
+- **Never** use the colon-separated "key: value" style in bullets
+  - `- Name: Taro Yamada` is forbidden
+  - Write information as a natural sentence, or structure it with headings and paragraphs
+  - Just like `**Label**:`, this isn't real Markdown syntax — never use it
+- Don't use tables
+- Don't use bold (`**bold**`)
+- Don't use horizontal rules (`---`)
+- Don't use the Japanese full stop `。`
+  - Use a newline at the end of a sentence
 
-悪い例（`**項目名**:` 構造）
-
-```markdown
-**名前**: 山田太郎
-**役職**: エンジニア
-```
-
-悪い例（コロン区切り箇条書き — これも絶対に書かない）
+Bad (the `**Label**:` pattern):
 
 ```markdown
-- 名前: 山田太郎
-- 役職: エンジニア
+**Name**: Taro Yamada
+**Role**: Engineer
 ```
 
-良い例（自然な文で書く）
+Bad (colon-separated bullets — also strictly forbidden):
 
 ```markdown
-山田太郎はエンジニア
+- Name: Taro Yamada
+- Role: Engineer
 ```
 
-良い例（見出しと段落で構造化する）
+Good (write as a natural sentence):
 
 ```markdown
-## 山田太郎
-
-エンジニア
+Taro Yamada is an engineer
 ```
 
-## 日本語のルール
-
-- 日本語と英数字の間には半角スペースを入れる
-  - 良い例: `Claude は AI です`
-  - 悪い例: `Claudeは AIです`
-- 読点は「、」を使う
-- 括弧は全角「（）」または半角「()」で統一する
-
-## 文書構造
-
-- 見出しは `#` から順に使い、階層を飛ばさない
-- 最上位の見出し `#` は文書に 1 つだけ使う
-- 段落間は空行を 1 行入れる
-- リストの前後にも空行を入れる
-- 文章は句点で繋がず改行で区切る
+Good (structure with headings and paragraphs):
 
 ```markdown
-# タイトル
+## Taro Yamada
 
-概要文
-
-## セクション
-
-本文
-
-- 項目 A
-- 項目 B
-
-次の段落
+Engineer
 ```
 
-## コードブロック
+## Japanese-language rules
 
-- インラインコードは `` ` `` で囲む
-- 複数行のコードは言語を指定してフェンスで囲む
+- Insert a half-width space between Japanese characters and ASCII (alphanumeric)
+  - Good: `Claude は AI です`
+  - Bad: `Claudeは AIです`
+- Use `、` for the comma
+- Use either full-width `（）` or half-width `()`, but stay consistent
+
+## Document structure
+
+- Use headings starting from `#` and don't skip levels
+- Use only one top-level `#` per document
+- One blank line between paragraphs
+- Blank lines around lists too
+- Don't run sentences together with full stops — break with newlines
+
+```markdown
+# Title
+
+Overview
+
+## Section
+
+Body
+
+- Item A
+- Item B
+
+Next paragraph
+```
+
+## Code blocks
+
+- Inline code uses backticks `` ` ``
+- Multi-line code uses fenced blocks with a language tag
 
 ````markdown
-`変数名` を使う
+Use `variable_name`
 
 ```python
 def hello():
@@ -100,9 +100,9 @@ def hello():
 ```
 ````
 
-## リンクと画像
+## Links and images
 
 ```markdown
-[リンクテキスト](URL)
-![代替テキスト](画像パス)
+[link text](URL)
+![alt text](image-path)
 ```
