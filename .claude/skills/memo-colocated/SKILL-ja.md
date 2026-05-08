@@ -1,6 +1,6 @@
 ---
-name: naito-memo
-description: "ソースファイルにコロケーションする個人メモ（.naito.md）を作成・更新する。使用法: /naito-memo <対象ファイルパス> <メモの内容や指示>"
+name: memo-colocated
+description: "ソースファイルにコロケーションする個人メモ（.naito.md）を作成・更新する。使用法: /memo-colocated <対象ファイルパス> <メモの内容や指示>"
 argument-hint: <対象ファイルパス> <メモの内容や指示>
 ---
 
@@ -60,4 +60,4 @@ updated: YYYY-MM-DD
 
 ## マークダウンルール
 
-CLAUDE.md に記載されたマークダウンガイドラインに従う。
+**REQUIRED SUB-SKILL**: Markdown ファイルを作成・編集する際は必ず Skill ツールで `markdown-writing` を invoke し、そのルールに従うこと。

@@ -1,6 +1,6 @@
 ---
-name: naito-memo
-description: "Create or update a personal memo (`.naito.md`) co-located next to a source file. Usage: /naito-memo <target file path> <memo content or instruction>"
+name: memo-colocated
+description: "Create or update a personal memo (`.naito.md`) co-located next to a source file. Usage: /memo-colocated <target file path> <memo content or instruction>"
 argument-hint: <target file path> <memo content or instruction>
 ---
 
@@ -60,4 +60,4 @@ Following the user's instruction, read the target file and summarize what's need
 
 ## Markdown rules
 
-Follow the markdown guidelines in CLAUDE.md.
+**REQUIRED SUB-SKILL**: when creating or editing Markdown, you must invoke the `markdown-writing` skill via the Skill tool and follow its rules.
