@@ -16,6 +16,14 @@ description: Rules for creating or editing Markdown (`.md`) files
 ## Forbidden
 
 - Don't use numbered lists (`1.` `2.` `3.`); use `-`
+- Don't number headings (`### 1. xxx`, `### 2. xxx`, `## 1. xxx`, etc.)
+  - This is the classic hack of routing a numbered list through headings — it's a numbered list in disguise
+  - Adding or removing items forces renumbering and maintenance falls apart
+  - If you only want to enumerate, use a bullet list (`-`); if you need separate sections, give each heading a content-based title
+- Don't use paragraph labels (short name line + blank line + value, repeated)
+  - Example: `Source\n\n<content>\n\nDescription\n\n<content>\n\nSuggestion\n\n<content>`
+  - This routes the banned `**Label**:` pattern through newlines — structurally it's the same key/value
+  - Promote labels to headings (`###` etc.), use bullets if you're enumerating, otherwise write natural prose
 - Don't use the non-Markdown structuring pattern `**Label**:`
 - **Never** use the colon-separated "key: value" style in bullets
   - `- Name: Taro Yamada` is forbidden
