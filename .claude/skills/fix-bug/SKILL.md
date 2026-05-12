@@ -13,13 +13,13 @@ A reproduction is the test. It specifies what to do, what should happen, and wha
 
 ## Workflow
 
-1. Establish a repro that reliably shows the bug
-2. Verify the bug is present right now
-3. Remove something from the relevant code
-4. Run the repro again
-5. If the bug still reproduces → keep the removal, repeat from step 3 with more code
-6. If the bug vanishes → write down the theory, revert, and retry removing a smaller chunk
-7. Continue until the code is minimal and the cause is obvious
+- Establish a repro that reliably shows the bug
+- Verify the bug is present right now
+- Remove something from the relevant code
+- Run the repro again
+- If the bug still reproduces, keep the removal and repeat the removal step with more code
+- If the bug vanishes, write down the theory, revert, and retry removing a smaller chunk
+- Continue until the code is minimal and the cause is obvious
 
 The goal is to shrink the code to the smallest form that still reproduces the bug. At that point the root cause usually reveals itself.
 

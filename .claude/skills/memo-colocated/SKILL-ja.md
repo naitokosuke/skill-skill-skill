@@ -6,7 +6,7 @@ argument-hint: <対象ファイルパス> <メモの内容や指示>
 
 # 個人メモ（.naito.md）の作成・更新
 
-ソースファイルと同じディレクトリに `{ファイル名}.naito.md` を配置する個人メモを作成・更新する。
+ソースファイルと同じディレクトリに `{ファイル名}.naito.md` を配置する個人メモを作成・更新する
 
 ## 指示の解釈
 
@@ -14,21 +14,21 @@ argument-hint: <対象ファイルパス> <メモの内容や指示>
 $ARGUMENTS
 ```
 
-ユーザーの指示から以下を特定する:
+ユーザーの指示から以下を特定する
 
 - 対象ファイルのパス
 - メモに記載する内容・趣旨
 
 ## ファイル命名規則
 
-対象ファイルの名前に `.naito.md` を付与する。
+対象ファイルの名前に `.naito.md` を付与する
 
-- 対象: `src/app/foo/Bar.vue`
-- メモ: `src/app/foo/Bar.vue.naito.md`
+- 対象が `src/app/foo/Bar.vue` であれば
+- メモは `src/app/foo/Bar.vue.naito.md`
 
 ## frontmatter
 
-メモファイルには必ず frontmatter を付与する。
+メモファイルには必ず frontmatter を付与する
 
 ### 新規作成時
 
@@ -38,15 +38,16 @@ updated: YYYY-MM-DD
 ---
 ```
 
-`YYYY-MM-DD` は現在の日付を使用する。
+`YYYY-MM-DD` は現在の日付を使用する
 
 ### 更新時
 
-既存の `updated` を現在の日付に書き換える。
+既存の `updated` を現在の日付に書き換える
 
 ## メモの内容
 
-ユーザーの指示に従い、対象ファイルを読んで必要な情報をまとめる。以下は典型的な内容の例:
+ユーザーの指示に従い、対象ファイルを読んで必要な情報をまとめる
+以下は典型的な内容の例
 
 - コンポーネントの構造やテンプレートツリー
 - 重要な分岐ロジックの整理
@@ -60,4 +61,4 @@ updated: YYYY-MM-DD
 
 ## マークダウンルール
 
-**REQUIRED SUB-SKILL**: Markdown ファイルを作成・編集する際は必ず Skill ツールで `markdown-writing` を invoke し、そのルールに従うこと。
+Markdown ファイルを作成・編集する際は必ず Skill ツールで `markdown-writing` を invoke し、そのルールに従うこと

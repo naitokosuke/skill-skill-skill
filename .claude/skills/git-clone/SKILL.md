@@ -9,17 +9,17 @@ When cloning a Git repository, use `ghq get` instead of `git clone`.
 
 ## Basic commands
 
-- `ghq get <URL or owner/repo>`: clone
-- Destination: `$(ghq root)/<host>/<owner>/<repo>`
+- Use `ghq get <URL or owner/repo>` to clone
+- Cloned repos land at `$(ghq root)/<host>/<owner>/<repo>`
 
 When showing an absolute destination path, run `ghq root` to get the actual value (it's not always `~/ghq` — users often configure it to `~/src` etc.).
 
 ## Main options
 
-- `-u`: update if already cloned (equivalent to fetch; checkout is unchanged)
-- `-p`: fetch via SSH protocol
-- `--shallow`: shallow clone
-- `--branch <name>`: specify branch or tag (passed through to `git clone --branch`, so tag names also work)
+- Pass `-u` to update if already cloned (equivalent to fetch; checkout is unchanged)
+- Pass `-p` to fetch via SSH protocol
+- Pass `--shallow` for a shallow clone
+- Pass `--branch <name>` to specify branch or tag (passed through to `git clone --branch`, so tag names also work)
 
 Default to HTTPS unless told otherwise. Use `-p` only on explicit request.
 
@@ -49,4 +49,4 @@ git clone [--depth=1] [--branch <ref>] <URL> <path>
 
 ## Related skills
 
-- Locating an existing local repository path: git-repo-list
+- Locating an existing local repository path — git-repo-list

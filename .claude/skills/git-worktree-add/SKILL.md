@@ -9,13 +9,13 @@ When creating a new worktree, use `gwq add` instead of `git worktree add`.
 
 ## Basic commands
 
-- `gwq add -b <new-branch>`: create a worktree on a new branch (start point is the current HEAD)
-- `gwq add <existing-branch>`: create on an existing branch
-- `gwq add -i`: pick a branch interactively
-- `gwq add -s ...`: stay in the new worktree after creation
-- `gwq add -f ...`: force creation
+- Use `gwq add -b <new-branch>` to create a worktree on a new branch (start point is the current HEAD)
+- Use `gwq add <existing-branch>` to create on an existing branch
+- Use `gwq add -i` to pick a branch interactively
+- Use `gwq add -s ...` to stay in the new worktree after creation
+- Use `gwq add -f ...` to force creation
 
-`gwq add` only takes two positional arguments, `[branch] [path]` — **there is no argument for a start point**. Writing `gwq add -b <new> <ref>` makes the second argument get interpreted as a path (a common gotcha). When in doubt, read `gwq add --help` first.
+`gwq add` only takes two positional arguments, `[branch] [path]` — there is no argument for a start point. Writing `gwq add -b <new> <ref>` makes the second argument get interpreted as a path (a common gotcha). When in doubt, read `gwq add --help` first.
 
 ## Creating a worktree on a new branch from a specific ref
 
@@ -33,11 +33,11 @@ gwq add <new-branch>
 
 Worktrees are created under `<basedir>/<expanded template>` per gwq config. Check current values with `gwq config list`.
 
-**Always verify it lines up with the parent tree first.** Look up the parent tree's path with `git worktree list`, then check whether gwq's default destination follows the same hierarchy. A common misalignment:
+Always verify it lines up with the parent tree first. Look up the parent tree's path with `git worktree list`, then check whether gwq's default destination follows the same hierarchy. A common misalignment:
 
 * GitLab nested groups (`gitlab.com/owner/sub1/sub2/repo`) — gwq v0.0.19's `{{.Owner}}` only picks up the top-level group, dropping the subgroups entirely (e.g. for parent `~/src/gitlab.com/group/sub1/sub2/repo` the worktree ends up at `~/src/gitlab.com/group/repo=...`)
 
-Fix: place a **local config (`.gwq.toml`) in that repo to override the global config**. Templating variables can't express subgroups, so the simplest, surest fix is to pin `basedir` to the parent of the parent tree:
+The fix is to place a local config (`.gwq.toml`) in that repo to override the global config. Templating variables can't express subgroups, so the simplest, surest fix is to pin `basedir` to the parent of the parent tree:
 
 ```sh
 gwq config set --local worktree.basedir "$(dirname "$(git rev-parse --show-toplevel)")"
@@ -66,6 +66,6 @@ If `gwq` is not installed, tell the user; if they ask, fall back to plain `git w
 
 ## Related skills
 
-- List: git-worktree-list
-- Remove: git-worktree-rm
-- Move / exec inside: git-worktree-cd
+- Listing worktrees — git-worktree-list
+- Removing worktrees — git-worktree-rm
+- Moving / executing inside — git-worktree-cd

@@ -7,18 +7,18 @@ description: Use when a source-code formatter (prettier, biome, rustfmt, black, 
 
 ## Principle
 
-When a formatter's output looks awkward, the cause is **a mismatch between the source structure and the formatter's rules**. Fix the source side with a minimal rewrite so the formatter naturally produces clean output. Don't suppress the formatter (ignore comments) or hide the problem in another medium (CSS pseudo-elements, images, etc.).
+When a formatter's output looks awkward, the cause is a mismatch between the source structure and the formatter's rules. Fix the source side with a minimal rewrite so the formatter naturally produces clean output. Don't suppress the formatter (ignore comments) or hide the problem in another medium (CSS pseudo-elements, images, etc.).
 
 ## Procedure
 
-1. **Name the awkward shape as a pattern.** e.g. "the closing `>` sits alone on the next line", "the `?` and `:` of a ternary don't line up with the conditions they belong to", "the method chain breaks at points that don't match the logical phases".
-2. **Locate the smallest unit producing it** in the source — usually a single expression, a single element, or a few constructs adjacent on one line.
-3. **Rewrite that unit, preserving meaning,** with one of:
+- Name the awkward shape as a pattern. For example: "the closing `>` sits alone on the next line", "the `?` and `:` of a ternary don't line up with the conditions they belong to", "the method chain breaks at points that don't match the logical phases".
+- Locate the smallest unit producing it in the source — usually a single expression, a single element, or a few constructs adjacent on one line.
+- Rewrite that unit, preserving meaning, with one of:
    - Separate adjacent things (insert a line break, place on its own line)
    - Extract an intermediate variable / intermediate element
    - Decompose a compound expression (conditional → if/else, nested ternary → early return)
    - Move whitespace control to the parent (e.g. `display: flex` on the parent so the inter-child whitespace is dropped, while semantic equivalence is preserved structurally)
-4. **Re-run the formatter** (whatever the project's wrapper is) and inspect. If the awkward shape recurs, try a different rewrite.
+- Re-run the formatter (whatever the project's wrapper is) and inspect. If the awkward shape recurs, try a different rewrite.
 
 ## Verification
 
@@ -26,16 +26,14 @@ Run the formatter after every change. A construct that came out clean once can b
 
 ## Tempting alternatives that just shift the cost
 
-| Alternative | Cost it shifts to |
-|---|---|
-| `// prettier-ignore`, `// fmt: skip`, etc. | Project conventions usually forbid them; another formatter may not honour them; reviewers are surprised |
-| Move the visible string into a CSS `content` / image / annotation | The text drops out of copy, search, and screen-reader reach |
-| Layouts that depend on the data shape (length, count, etc.) | Breaks the moment the data changes |
-| "Visually equivalent" alternative structures (e.g. two adjacent inline elements where one was) | The same formatter rule re-breaks them; the underlying structural conflict is unchanged |
+- `// prettier-ignore`, `// fmt: skip`, etc. — project conventions usually forbid them; another formatter may not honour them; reviewers are surprised
+- Moving the visible string into a CSS `content` / image / annotation — the text drops out of copy, search, and screen-reader reach
+- Layouts that depend on the data shape (length, count, etc.) — break the moment the data changes
+- "Visually equivalent" alternative structures (e.g. two adjacent inline elements where one was) — the same formatter rule re-breaks them; the underlying structural conflict is unchanged
 
 ## Worked example: Prettier-style HTML formatter
 
-Input `<dt><b>X</b>/total</dt>` gets reformatted to `</b\n>/total` because Prettier treats inline-element + adjacent text as whitespace-sensitive and refuses to insert whitespace. **Resolve the conflict by placing the adjacent text on its own line:**
+Input `<dt><b>X</b>/total</dt>` gets reformatted to `</b\n>/total` because Prettier treats inline-element + adjacent text as whitespace-sensitive and refuses to insert whitespace. Resolve the conflict by placing the adjacent text on its own line:
 
 ```html
 <dt>
@@ -50,4 +48,4 @@ Now the closing `>` sits at the end of a line and the trailing text is a child t
 
 ## Generalisation
 
-The specific "broken shape" differs by formatter, but the procedure does not: **observe the shape → rewrite the source structure → re-run the formatter**.
+The specific "broken shape" differs by formatter, but the procedure does not — observe the shape, rewrite the source structure, then re-run the formatter.

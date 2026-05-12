@@ -9,23 +9,25 @@ Git リポジトリをクローンする際は `git clone` ではなく `ghq get
 
 ## 基本コマンド
 
-- `ghq get <URL or owner/repo>`: クローン
-- 配置先: `$(ghq root)/<host>/<owner>/<repo>`
+- `ghq get <URL or owner/repo>` でクローン
+- 配置先は `$(ghq root)/<host>/<owner>/<repo>`
 
 配置先の絶対パスを提示するときは `ghq root` を実行して実際の値を確認する（`~/ghq` とは限らない、ユーザー設定で `~/src` などに変わる）
 
 ## 主なオプション
 
-- `-u`: 既にクローン済みなら更新（fetch 相当、checkout は変えない）
-- `-p`: SSH プロトコルで取得
-- `--shallow`: shallow clone
-- `--branch <name>`: ブランチまたはタグを指定（内部で `git clone --branch` を呼ぶためタグ名でも動く）
+- `-u` で既にクローン済みなら更新（fetch 相当、checkout は変えない）
+- `-p` で SSH プロトコルで取得
+- `--shallow` で shallow clone
+- `--branch <name>` でブランチまたはタグを指定（内部で `git clone --branch` を呼ぶためタグ名でも動く）
 
-指定が無ければ HTTPS をデフォルトとする。`-p` は明示要求があったときのみ使う
+指定が無ければ HTTPS をデフォルトとする
+`-p` は明示要求があったときのみ使う
 
 ## 既存リポジトリがある状態で特定の ref に切り替えたいとき
 
-`ghq get -u --branch <ref>` は fetch まで行うが checkout 済みブランチは切り替わらない。切り替えが必要なら続けて以下を実行する
+`ghq get -u --branch <ref>` は fetch まで行うが checkout 済みブランチは切り替わらない
+切り替えが必要なら続けて以下を実行する
 
 ```sh
 git -C "$(ghq list -p -e <owner>/<repo>)" checkout <ref>
@@ -49,4 +51,4 @@ git clone [--depth=1] [--branch <ref>] <URL> <path>
 
 ## 関連スキル
 
-- ローカルリポジトリのパスを探す場面: git-repo-list
+- ローカルリポジトリのパスを探す場面は git-repo-list

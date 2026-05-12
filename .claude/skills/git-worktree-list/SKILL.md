@@ -9,17 +9,17 @@ When listing or inspecting worktrees, use `gwq list` / `gwq status` instead of `
 
 ## Listing
 
-- `gwq list`: worktrees of the current repo
-- `gwq list -g`: global view across all repos
-- `gwq list -v`: verbose
-- `gwq list --json`: JSON output
+- Use `gwq list` for worktrees of the current repo
+- Use `gwq list -g` for a global view across all repos
+- Use `gwq list -v` for verbose output
+- Use `gwq list --json` for JSON output
 
 ## Status
 
-- `gwq status`: worktrees of the current repo with their git status
-- `gwq status --global`: cross-repo status
-- `gwq status --watch`: live monitoring
-- `gwq status --json`: structured output
+- Use `gwq status` for worktrees of the current repo with their git status
+- Use `gwq status --global` for cross-repo status
+- Use `gwq status --watch` for live monitoring
+- Use `gwq status --json` for structured output
 
 ## Caveat about where you run it
 
@@ -32,8 +32,8 @@ Running the non-global form outside a git repository (directly under the ghq roo
 
 `gwq list --json` and `gwq status --json` are different formats:
 
-- `gwq list --json`: worktree metadata (path, branch, commit_hash, etc.)
-- `gwq status --json`: also includes change state (modified / untracked, etc.)
+- `gwq list --json` returns worktree metadata such as path, branch, and commit_hash
+- `gwq status --json` also includes change state such as modified / untracked
 
 Pick whichever fits the jq filter you have in mind.
 
@@ -43,6 +43,6 @@ If `gwq` is not installed, tell the user.
 
 ## Related skills
 
-- Add: git-worktree-add
-- Remove: git-worktree-rm
-- Move / exec inside: git-worktree-cd
+- Adding worktrees — git-worktree-add
+- Removing worktrees — git-worktree-rm
+- Moving / executing inside — git-worktree-cd

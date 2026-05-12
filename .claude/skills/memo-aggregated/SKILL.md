@@ -6,7 +6,7 @@ argument-hint: <content or instruction>
 
 # Read / write the `___naito___/` personal archive
 
-The `___naito___/` directory at the repo root is where naito aggregates personal memos, screenshots, scripts, etc. tied to the repo. It is ignored via global gitignore (`~/.config/git/ignore`), so nothing here is committed. This skill is responsible only for **routing** — deciding where in `___naito___/` to write, and where to read from.
+The `___naito___/` directory at the repo root is where naito aggregates personal memos, screenshots, scripts, etc. tied to the repo. It is ignored via global gitignore (`~/.config/git/ignore`), so nothing here is committed. This skill is responsible only for routing — deciding where in `___naito___/` to write, and where to read from.
 
 ## Parsing the instruction
 
@@ -21,50 +21,71 @@ From the user's instruction, identify:
 
 ## Resolving the ___naito___ root
 
-1. Get the repo root with `git rev-parse --show-toplevel`
-2. **Important**: When the current directory is a git worktree, the worktree's `___naito___` is a symlink pointing to the parent checkout. Just use `<repo-root>/___naito___/` as the path — writes go through the symlink to the actual storage. There is no need to normalize via `readlink` (you may report either path to the user)
-3. If `___naito___/` does not exist, ask the user "this repo doesn't have `___naito___/` yet; create it?". Do not silently create it at the top level
+- Get the repo root with `git rev-parse --show-toplevel`
+- When the current directory is a git worktree, the worktree's `___naito___` is a symlink pointing to the parent checkout. Just use `<repo-root>/___naito___/` as the path — writes go through the symlink to the actual storage. There is no need to normalize via `readlink` (you may report either path to the user)
+- If `___naito___/` does not exist, ask the user "this repo doesn't have `___naito___/` yet; create it?". Do not silently create it at the top level
 
 ## Routing rules
 
-Place files into the following subdirectories based on the instruction. **Prefer existing directories**: if an existing file matches the topic, append/place alongside it. Only create a new directory when the instruction clearly introduces a new topic.
+Place files into the following subdirectories based on the instruction. Prefer existing directories — if an existing file matches the topic, append or place alongside it. Only create a new directory when the instruction clearly introduces a new topic.
 
-| Subdirectory | Purpose | Naming |
-|---|---|---|
-| `issue/<number>/` | Per-issue worklog / screenshots / recordings (GitLab/GitHub) | Extract issue number from the instruction (`#1234`, `issue 1234`, etc). Filenames inside are kebab-case describing the content. e.g. `issue/1234/<topic>.md` |
-| `wip/` | Cross-cutting / ongoing notes not tied to any issue | `wip/<topic>.md` or `wip/<topic>/...` |
-| `wip/about-repo/` | Repo-wide knowledge (architecture / tech-stack / design-system / culture / engineering / features, etc.) | Prefer appending to existing files (e.g. `architecture.md`) |
-| `code_tour/<topic>/` | Materials for VS Code Code Tour | Match topic names to existing siblings if any |
-| `sentry/` | Sentry incidents / responses | `sentry/categories/<category>.md` or `sentry/<topic>.md`. The issue list lives at `sentry/gitlab-issues.md` |
-| `okr/<year>/` | OKRs | Year-partitioned, e.g. `okr/2026/...` |
-| `ideal/<topic>/` | Re-architecture proposals, ideal-state notes | Follow existing names if any |
-| `script/` | Personal shell scripts | `script/<name>.sh` (mind the executable bit) |
+### `issue/<number>/`
 
-When unsure, decide in this order:
+Per-issue worklog, screenshots, and recordings (GitLab/GitHub). Extract the issue number from the instruction (`#1234`, `issue 1234`, etc). Filenames inside are kebab-case describing the content, e.g. `issue/1234/<topic>.md`.
 
-1. If there is an issue number, always `issue/<number>/`
-2. If the topic concerns repo-wide policy / architecture / culture, use `wip/about-repo/`
-3. Otherwise, for ongoing notes, use `wip/` directly
-4. If none of the above fit and an existing subdirectory matches the topic, use it
-5. If still undecided, ask the user a 2-way choice (e.g. "issue/<number>/ or wip/?")
+### `wip/`
+
+Cross-cutting / ongoing notes not tied to any issue. Use `wip/<topic>.md` or `wip/<topic>/...`.
+
+### `wip/about-repo/`
+
+Repo-wide knowledge such as architecture, tech-stack, design-system, culture, engineering, or features. Prefer appending to existing files like `architecture.md`.
+
+### `code_tour/<topic>/`
+
+Materials for VS Code Code Tour. Match topic names to existing siblings when any are present.
+
+### `sentry/`
+
+Sentry incidents and responses. Use `sentry/categories/<category>.md` or `sentry/<topic>.md`. The issue list lives at `sentry/gitlab-issues.md`.
+
+### `okr/<year>/`
+
+OKRs, year-partitioned (e.g. `okr/2026/...`).
+
+### `ideal/<topic>/`
+
+Re-architecture proposals and ideal-state notes. Follow existing names when any are present.
+
+### `script/`
+
+Personal shell scripts at `script/<name>.sh` (mind the executable bit).
+
+### Choosing when unsure
+
+- If there is an issue number, always use `issue/<number>/`
+- If the topic concerns repo-wide policy / architecture / culture, use `wip/about-repo/`
+- Otherwise, for ongoing notes, use `wip/` directly
+- If none of the above fit and an existing subdirectory matches the topic, use it
+- If still undecided, ask the user a 2-way choice (e.g. "issue/<number>/ or wip/?")
 
 ## Reading existing notes
 
 When the user says things like "that note in ___naito___" or "what was the memo on issue 1234":
 
-1. If there is an issue number, `ls` `issue/<number>/` to enumerate files
-2. If there is a topic keyword, full-text search via `rg -l <keyword> ___naito___/`
-3. On a hit, Read the file and summarize back to the user
+- If there is an issue number, `ls` `issue/<number>/` to enumerate files
+- If there is a topic keyword, full-text search via `rg -l <keyword> ___naito___/`
+- On a hit, Read the file and summarize back to the user
 
 ## Style / formatting
 
-- Out of scope: this skill is responsible for **routing only**. Memo structure and tone are decided per case
-- **REQUIRED SUB-SKILL**: when creating or editing Markdown, you must invoke the `markdown-writing` skill via the Skill tool and follow its rules
+- Memo structure and tone are decided per case; this skill is responsible only for routing
+- When creating or editing Markdown, you must invoke the `markdown-writing` skill via the Skill tool and follow its rules
 - Use ISO format `YYYY-MM-DD` for dates (current date comes from the `currentDate` env info)
 
 ## Append vs new file
 
-- If an existing file covers the same issue / topic, **prefer appending**. Avoid spawning multiple files for the same theme
+- If an existing file covers the same issue / topic, prefer appending and avoid spawning multiple files for the same theme
 - If the existing file is clearly about a different concern, create a new file
 - When appending, place content at the end of a section or under an appropriate heading without breaking structure
 

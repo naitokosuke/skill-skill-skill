@@ -25,7 +25,7 @@ description: Rules for creating or editing Markdown (`.md`) files
   - This routes the banned `**Label**:` pattern through newlines — structurally it's the same key/value
   - Promote labels to headings (`###` etc.), use bullets if you're enumerating, otherwise write natural prose
 - Don't use the non-Markdown structuring pattern `**Label**:`
-- **Never** use the colon-separated "key: value" style in bullets
+- Never use the colon-separated "key: value" style in bullets
   - `- Name: Taro Yamada` is forbidden
   - Write information as a natural sentence, or structure it with headings and paragraphs
   - Just like `**Label**:`, this isn't real Markdown syntax — never use it

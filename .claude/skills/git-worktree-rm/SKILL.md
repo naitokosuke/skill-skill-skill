@@ -9,11 +9,11 @@ When deleting a worktree, use `gwq remove` instead of `git worktree remove`.
 
 ## Basic commands
 
-- `gwq remove <pattern>`: remove a worktree
-- `gwq remove -b <branch>`: remove the worktree and its branch together
-- `gwq remove --dry-run <pattern>`: preview
-- `gwq remove -f <pattern>`: force-remove even with uncommitted changes (for dirty worktrees)
-- `gwq remove --force-delete-branch <branch>`: delete the branch even if unmerged (used with `-b`)
+- Use `gwq remove <pattern>` to remove a worktree
+- Use `gwq remove -b <branch>` to remove the worktree and its branch together
+- Use `gwq remove --dry-run <pattern>` to preview
+- Use `gwq remove -f <pattern>` to force-remove even with uncommitted changes (for dirty worktrees)
+- Use `gwq remove --force-delete-branch <branch>` to delete the branch even if unmerged (used with `-b`)
 
 `-f` is a worktree-side override (ignores dirty changes); `--force-delete-branch` is a branch-side override (ignores the unmerged-branch refusal). Different purposes.
 
@@ -32,5 +32,5 @@ If `gwq` is not installed, tell the user.
 
 ## Related skills
 
-- Add: git-worktree-add
-- List: git-worktree-list
+- Adding worktrees — git-worktree-add
+- Listing worktrees — git-worktree-list

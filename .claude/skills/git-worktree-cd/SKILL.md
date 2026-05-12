@@ -9,15 +9,15 @@ When moving into a worktree, fetching its path, or running a command inside it, 
 
 ## Move / get path
 
-- `gwq cd <name>`: move into the worktree (spawns a new shell)
-- `cd "$(gwq get <name>)"`: move within the current shell (always double-quote so paths with spaces stay safe)
-- `gwq get -g <repo>:<branch>`: resolve a path in the global scope
+- Use `gwq cd <name>` to move into the worktree (spawns a new shell)
+- Use `cd "$(gwq get <name>)"` to move within the current shell (always double-quote so paths with spaces stay safe)
+- Use `gwq get -g <repo>:<branch>` to resolve a path in the global scope
 
 ## Running a command inside a worktree
 
-- `gwq exec <name> -- <command>`: run without moving
-- `gwq exec -s <name> -- <command>`: run, then stay in that worktree
-- Example: `gwq exec feature -- npm test`
+- Use `gwq exec <name> -- <command>` to run without moving
+- Use `gwq exec -s <name> -- <command>` to run and then stay in that worktree
+- For example, `gwq exec feature -- npm test` runs the test suite inside the `feature` worktree
 
 ## Fallback
 
@@ -25,6 +25,6 @@ If `gwq` is not installed, tell the user.
 
 ## Related skills
 
-- Add: git-worktree-add
-- List: git-worktree-list
-- Remove: git-worktree-rm
+- Adding worktrees — git-worktree-add
+- Listing worktrees — git-worktree-list
+- Removing worktrees — git-worktree-rm

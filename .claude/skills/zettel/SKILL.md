@@ -120,11 +120,11 @@ tags:
 
 ### Tag selection procedure
 
-1. Read `~/zettel/_tags.md` to confirm the existing tag definitions
-2. Always include exactly one category tag (`frontend` / `tooling` / `migration`, etc.)
-3. Add as many relevant technology tags as needed
-4. Add a new tag only when no existing tag can express the concept
-5. When you do add a new tag, also append its definition and intended use to `~/zettel/_tags.md`
+- Read `~/zettel/_tags.md` to confirm the existing tag definitions
+- Always include exactly one category tag (`frontend` / `tooling` / `migration`, etc.)
+- Add as many relevant technology tags as needed
+- Add a new tag only when no existing tag can express the concept
+- When you do add a new tag, also append its definition and intended use to `~/zettel/_tags.md`
 
 ### Tag conventions
 

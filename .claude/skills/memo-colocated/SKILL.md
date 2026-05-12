@@ -60,4 +60,4 @@ Following the user's instruction, read the target file and summarize what's need
 
 ## Markdown rules
 
-**REQUIRED SUB-SKILL**: when creating or editing Markdown, you must invoke the `markdown-writing` skill via the Skill tool and follow its rules.
+When creating or editing Markdown, you must invoke the `markdown-writing` skill via the Skill tool and follow its rules.

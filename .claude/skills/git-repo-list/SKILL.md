@@ -9,12 +9,12 @@ When listing or searching locally-cloned Git repositories, use `ghq list`.
 
 ## Basic commands
 
-- `ghq list`: relative-path listing
-- `ghq list -p`: absolute-path listing
-- `ghq list -e <name>`: exact-match search
-- `ghq list <pattern>`: substring-match search
-- `ghq root`: show the primary root
-- `ghq root --all`: show all roots
+- Use `ghq list` for relative-path listing
+- Use `ghq list -p` for absolute-path listing
+- Use `ghq list -e <name>` for exact-match search
+- Use `ghq list <pattern>` for substring-match search
+- Use `ghq root` to show the primary root
+- Use `ghq root --all` to show all roots
 
 `-e` accepts both `<repo>` alone and `<owner>/<repo>` form (use the latter to disambiguate same-named repos).
 
